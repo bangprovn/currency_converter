@@ -30,6 +30,7 @@ import java.net.URL;
 
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 import com.example.bangprovn.converter.Utils.ConversionUtils;
 import com.example.bangprovn.converter.Utils.GetFactorUtils;
@@ -101,7 +102,11 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     }
 
     public void onButtonClick(View view) {
-        new urlOperation().execute();
+        if(in_text.getText().toString().matches("")) {
+            Toast.makeText(this, "You did not enter a value", Toast.LENGTH_SHORT).show();
+        } else {
+            new urlOperation().execute();
+        }
     }
 
     @Override
