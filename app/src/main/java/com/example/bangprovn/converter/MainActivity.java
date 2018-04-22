@@ -23,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -216,8 +218,8 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         protected void onPostExecute(Void result) {
             double value = Float.parseFloat(in_text.getText().toString());
             double factor = GetFactorUtils.getJsonQuery();
-
-            out_text.setText(String.valueOf(ConversionUtils.convertCurrency(value, factor)));
+            out_text.setText(BigDecimal.valueOf(ConversionUtils.convertCurrency(value, factor))
+                    .setScale(0, RoundingMode.HALF_EVEN).toPlainString());
         }
     }
 }
